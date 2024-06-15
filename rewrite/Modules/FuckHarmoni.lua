@@ -1,13 +1,16 @@
 function quaverParse(file)   
+    print("quaverParse()")
     -- huge credits to https://github.com/AGORI-Studios/Rit for this part
         chart = tinyyaml.parse(love.filesystem.read(file))
-        lanes = {}
+        homerLanes = {}
+        homieLanes = {}
         timingPointsTable = {}
         scrollVelocities = {}
         totalNoteCount = 0
         holdNoteCount = 0
-        for i = 1,7 do
-            table.insert(lanes, {})
+        for i = 1,4 do
+            table.insert(homerLanes, {})
+            table.insert(homieLanes, {})
         end
         banner = nil
         metaData = {
@@ -30,14 +33,14 @@ function quaverParse(file)
             local hitObject = chart.HitObjects[i]
             local startTime = (hitObject.StartTime or 0)
             if not startTime then goto continue end
-            local endTime = hitObject.EndTime or 0
             local lane = hitObject.Lane
+            note = {}
+            note.time = startTime
             totalNoteCount = totalNoteCount + 1
-            if endTime > 0 then
-                holdNoteCount = holdNoteCount + 1
-            end
-            local note = Objects.Game.Note(startTime, lane, endTime)
-            table.insert(lanes[lane], note)   
+
+            table.insert(homerLanes[lane], note)
+            table.insert(homieLanes[lane], note)   
+   
             if not firstNoteTime and startTime then
                 firstNoteTime = math.floor(startTime/1000)
                 print("first note time: ".. firstNoteTime)
@@ -46,10 +49,8 @@ function quaverParse(file)
             ::continue::
         end
         print("Total Note Count: ".. totalNoteCount)
-        songLength = song:getDuration()
-        print(songLength)
         songLengthToLastNote = lastNoteTime/1000
-        bestScorePerNote = 1000000/(#lanes[1]+#lanes[2]+#lanes[3]+#lanes[4])
+        bestScorePerNote = 1000000/(#homerLanes[1]+#homerLanes[2]+#homerLanes[3]+#homerLanes[4])
         holdNotePercent = math.ceil((holdNoteCount / totalNoteCount)*100)
         currentBpm = metaData.bpm
         if currentBpm then

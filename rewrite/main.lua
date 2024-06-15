@@ -33,6 +33,7 @@ function love.load()
     Class = require("Libraries.Class")
     State = require("Libraries.State")
     Timer = require("Libraries.Timer")
+    tinyyaml = require("Libraries.tinyyaml")
     
     defaultFont = love.graphics.newFont(12)
 
@@ -43,9 +44,10 @@ function love.load()
     Shaders = require("Modules.Shaders")
     Objects = require("Modules.Objects")
     UI = require("Modules.UI")
+    require("Modules.fuckHarmoni")
     require("Modules.Debug")
 
-    State.switch(States.GameNormal)
+    State.switch(States.GameFunkin)
 end
 
 function love.update(dt)
