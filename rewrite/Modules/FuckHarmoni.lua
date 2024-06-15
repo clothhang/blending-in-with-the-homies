@@ -12,6 +12,8 @@ function quaverParse(file)
             table.insert(homerLanes, {})
             table.insert(homieLanes, {})
         end
+
+        lane1 = {}
         banner = nil
         metaData = {
             name = chart.Title,
@@ -35,11 +37,15 @@ function quaverParse(file)
             if not startTime then goto continue end
             local lane = hitObject.Lane
             note = {}
+            local time = startTime
             note.time = startTime
             totalNoteCount = totalNoteCount + 1
 
-            table.insert(homerLanes[lane], note)
-            table.insert(homieLanes[lane], note)   
+            table.insert(homerLanes[lane], startTime)
+            table.insert(homieLanes[lane], startTime)   
+            if lane == 1 then
+            table.insert(lane1, time)
+            end
    
             if not firstNoteTime and startTime then
                 firstNoteTime = math.floor(startTime/1000)

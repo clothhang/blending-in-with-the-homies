@@ -27,7 +27,11 @@ function love.load()
     -- Setup Libraries
     Input = (require("Libraries.Baton")).new({
         controls = {
-            GameClick = {"mouse:1"}
+            GameClick = {"mouse:1"},
+            FunkinLeft = {"key:d", "key:left"},
+            FunkinDown = {"key:f", "key:down"},
+            FunkinUp = {"key:j", "key:up"},
+            FunkinRight = {"key:k", "key:right"},
         }
     })
     Class = require("Libraries.Class")
