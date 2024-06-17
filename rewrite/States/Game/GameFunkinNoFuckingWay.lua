@@ -54,7 +54,29 @@ end
 
 
 function GameFunkin:judge(noteTime)
+        if noteTime <= marvTiming then
+            score = score + bestScorePerNote*(6/6)
+            marvCount = marvCount + 1
 
+        elseif noteTime <= perfTiming then
+            score = score + bestScorePerNote*(5/6)
+            perfCount = perfCount + 1
+
+        elseif noteTime <= greatTiming then
+            score = score + bestScorePerNote*(4/6)
+            greatCount = greatCount + 1
+
+        elseif noteTime <= goodTiming then
+            score = score + bestScorePerNote*(3/6)
+            goodCount = goodCount + 1
+
+        elseif noteTime <= okayTiming then
+            score = score + bestScorePerNote*(2/6)
+            okayCount = okayCount + 1
+        else
+            missCount = missCount + 1
+            
+        end
 
 end
 
@@ -73,7 +95,7 @@ function GameFunkin:checkInput()
     end
 
 end
-
+ 
 function GameFunkin:draw()
     love.graphics.setColor(1,1,1,1)
     love.graphics.translate(0,100)
