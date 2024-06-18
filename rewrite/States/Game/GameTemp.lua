@@ -19,7 +19,7 @@ function GameTemp:update(dt)
     end
 
 
-    print(homiesTable[1][4])
+   -- print(homiesTable[1][4])
 
 end
 
@@ -62,6 +62,9 @@ end
 function GameTemp:draw()
     for i = 1,#homiesTable do
         love.graphics.setColor(homiesTable[i][3])
+        if i == 1 then
+            print(homiesTable[i][3][1])
+        end
 
         love.graphics.rectangle("fill", homiesTable[i][4], homiesTable[i][5], 200, 500)
 
