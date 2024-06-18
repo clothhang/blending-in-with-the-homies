@@ -51,7 +51,7 @@ function love.load()
     require("Modules.fuckHarmoni")
     require("Modules.Debug")
 
-    State.switch(States.GameFunkin)
+    State.switch(States.GameJoker)
 end
 
 function love.update(dt)

@@ -6,6 +6,7 @@ local inputList = {
     "FunkinUp",
     "FunkinRight"
 }
+
 function GameFunkin:enter()
 
     --load assets
@@ -31,7 +32,7 @@ function GameFunkin:enter()
     judgeCounterXPos = {0,0,0,0,0,0}
 
     --set variables
-    MusicTime = -1000
+    MusicTime = -10000
     speed = 1.4
     laneWidth = 75
     score = 0

@@ -10,7 +10,7 @@ local beat = 0
 function GameRhythm:enter()
     homie = love.graphics.newImage("Assets/Images/homie.png")
     homer = love.graphics.newImage("Assets/Images/homer.png")
-    background = love.graphics.newImage("Assets/Images/the hottest fucking image ever oh my goddddddd.png")
+    background = love.graphics.newImage("Assets/Images/bg.png")
 
     click1 = love.audio.newSource("Assets/Sounds/sound-hit.wav", "static")
     click2 = love.audio.newSource("Assets/Sounds/sound-hitclap.wav", "static")
@@ -146,7 +146,7 @@ end
 
 function GameRhythm:draw()
     love.graphics.draw(background)
-    love.graphics.setColor(1,1,1,0.1)
+    --love.graphics.setColor(1,1,1,0.1)
     for i = 1,#homiePositionsTable do
         love.graphics.draw(homie, homiePositionsTable[i][1], homiePositionsTable[i][2]- homiePositionsTable[i][3])
         if i == curHomerPos then
