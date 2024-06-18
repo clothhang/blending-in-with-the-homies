@@ -23,6 +23,25 @@ function toGameScreen(x, y, string)
     end
 end
 
+function tableCopy(table)
+    local newTable = {}
+    for k, v in pairs(table) do
+        newTable[k] = v
+    end
+
+    return newTable
+end
+
+function isInTable(value, table)
+    local isThere = false
+    for i = 1,#table do
+        if table[i] == value then
+            isThere = true
+        end
+    end
+    return isThere
+end
+
 function love.load()
     -- Setup Libraries
     Input = (require("Libraries.Baton")).new({
@@ -51,7 +70,7 @@ function love.load()
     require("Modules.fuckHarmoni")
     require("Modules.Debug")
 
-    State.switch(States.GameJoker)
+    State.switch(States.GameTemp)
 end
 
 function love.update(dt)
