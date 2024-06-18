@@ -16,6 +16,8 @@ function GameTemp:update(dt)
     if Input:pressed("GameClick") then
         GameTemp:checkInput()
         GameTemp:randomizeHomiesTable()
+
+        print(homiesTable[1][1] .. ", " .. homiesTable[1][2] .. ", " .. homiesTable[1][3][1] .. ", " .. homiesTable[1][3][2] .. ", " .. homiesTable[1][3][3] .. ", " .. homiesTable[1][4] .. ", " .. homiesTable[1][5])
     end
 
 
@@ -63,7 +65,7 @@ function GameTemp:draw()
     for i = 1,#homiesTable do
         love.graphics.setColor(homiesTable[i][3])
         if i == 1 then
-            print(homiesTable[i][3][1])
+          --  print(homiesTable[i][3][1])
         end
 
         love.graphics.rectangle("fill", homiesTable[i][4], homiesTable[i][5], 200, 500)
