@@ -2,22 +2,40 @@ local GameTemp = State()
 
 function GameTemp:enter()
 
+    murrImage = love.graphics.newImage("Assets/Images/murr.png")
+    salImage = love.graphics.newImage("Assets/Images/sal.png")
+    qImage = love.graphics.newImage("Assets/Images/q.png")
+    joeImage = love.graphics.newImage("Assets/Images/joe.png")
+
+    homiePositionsTable = {
+        {180,163, 0},
+        {392,165, 0},
+        {650,150, 0},
+        {954,118, 0}
+    }
 
     homiesTable = {
-        {"1", 1, {1,0,0}, 180, 163},
-        {"2", 2, {0,1,0}, 392, 165},
-        {"3", 3, {0,0,1}, 650, 150},
-        {"4", 4, {1,1,0}, 954, 118},
+        {murrImage, 1, {1,0,0}, 180, 163},
+        {salImage, 2, {0,1,0}, 392, 165},
+        {qImage, 3, {0,0,1}, 650, 150},
+        {joeImage, 4, {1,1,0}, 954, 118},
     }
+
+    curTarget = love.math.random(1,#homiesTable)
 end
 
 function GameTemp:update(dt)
+        
 
     if Input:pressed("GameClick") then
-        GameTemp:checkInput()
+        if GameTemp:checkInput() == curTarget then
+            print("S")
+        else
+            print("F")
+        end
         GameTemp:randomizeHomiesTable()
 
-        print(homiesTable[1][1] .. ", " .. homiesTable[1][2] .. ", " .. homiesTable[1][3][1] .. ", " .. homiesTable[1][3][2] .. ", " .. homiesTable[1][3][3] .. ", " .. homiesTable[1][4] .. ", " .. homiesTable[1][5])
+       --l print(homiesTable[1][1] .. ", " .. homiesTable[1][2] .. ", " .. homiesTable[1][3][1] .. ", " .. homiesTable[1][3][2] .. ", " .. homiesTable[1][3][3] .. ", " .. homiesTable[1][4] .. ", " .. homiesTable[1][5])
     end
 
 
@@ -26,11 +44,11 @@ function GameTemp:update(dt)
 end
 
 function GameTemp:checkInput()
-    for i = 1,#homiesTable do
-        if mouseX > homiesTable[i][4] and mouseX < homiesTable[i][4] + 200 then
-            if mouseY > homiesTable[i][5] and mouseY < homiesTable[i][5] + 500 then
-                print(i)
-                return i
+    for i = 1,#homiePositionsTable do
+        if mouseX > homiePositionsTable[i][1] and mouseX < homiePositionsTable[i][1] + 200 then
+            if mouseY > homiePositionsTable[i][2] and mouseY < homiePositionsTable[i][2] + 500 then
+                print(homiesTable[i][1])
+                return homiesTable[i][2]
             end
         end
     end
@@ -54,21 +72,22 @@ function GameTemp:randomizeHomiesTable()
     homiesTable = {}
     for i = 1,#homiesTableCopy do
         if i == 1 then
-            print("")
+        --    print("")
         end
-        print(homiesTableCopy[testTable[i]][4])
+       -- print(homiesTableCopy[testTable[i]][4])
         table.insert(homiesTable, homiesTableCopy[testTable[i]])
     end
 end
 
 function GameTemp:draw()
+    love.graphics.print(curTarget, 100, 100)
     for i = 1,#homiesTable do
-        love.graphics.setColor(homiesTable[i][3])
+      --  love.graphics.setColor(homiesTable[i][3])
         if i == 1 then
           --  print(homiesTable[i][3][1])
         end
-
-        love.graphics.rectangle("fill", homiesTable[i][4], homiesTable[i][5], 200, 500)
+        love.graphics.draw(homiesTable[i][1], homiePositionsTable[i][1], homiePositionsTable[i][2])
+      --  love.graphics.rectangle("fill", homiePositionsTable[i][1], homiePositionsTable[i][2], 200, 500)
 
     end
 
