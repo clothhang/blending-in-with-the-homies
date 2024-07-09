@@ -52,7 +52,11 @@ end
 function GameJoker:randomizeJokerPositions()
     newPositions = {0,0,0,0}
     newTestValue = love.math.random(1,4)
+<<<<<<< HEAD
   --  for i = 1,
+=======
+   -- for i = 1,
+>>>>>>> 02182a3b1d42c72a822a64c462f86e376b24bff0
 end
 
 function GameJoker:update(dt)
