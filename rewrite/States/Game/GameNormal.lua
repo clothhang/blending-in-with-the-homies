@@ -28,19 +28,21 @@ function GameNormal:enter()
     whatTheHell = love.audio.newSource("Assets/Sounds/whatTheHellAreYouDoin.mp3", "static")
 
     --music
-    backgroundMusic = love.audio.newSource("Assets/Music/Nocturnes.mp3", "stream")
+    backgroundMusic = love.audio.newSource("Assets/Music/nocturnes.mp3", "stream")
 
     backgroundMusic:setLooping(true)
     if not backgroundMusic:isPlaying() then
         backgroundMusic:play()
     end
-    backgroundMusic:setVolume(0.5)
+    backgroundMusic:setVolume(1)
 
     --fonts
     solidFont = love.graphics.newFont("Assets/Fonts/FATASSFI.TTF",100)  -- i did not type this its literally the real font name lmfao 💀💀
     lineFont = love.graphics.newFont("Assets/Fonts/FATASSOU.TTF",100)
 
     GameNormal:initialize()
+
+    botplay = false
 
 end
 
@@ -84,7 +86,7 @@ end
 
 
 function GameNormal:update(dt)
-    gameTimerDecrementAmount = math.min((1000+(score*10)), 26000)
+    gameTimerDecrementAmount = math.min((1000+(score*10)), 20000)
     TimerDecrementer = TimerDecrementer - gameTimerDecrementAmount*dt
     peterTimerDecrementer = peterTimerDecrementer - 1000*dt
 
@@ -269,6 +271,7 @@ function GameNormal:hitHomie()
 end
 
 function GameNormal:gameOver()
+    backgroundMusic:stop()
     priceIsRight:play()
     State.switch(States.Results)
 end
@@ -295,7 +298,7 @@ function GameNormal:pickHomerPosition(currentPos)
     PETERFUCKINGGRIFFIN = false
     hasEnemy = false
     gameTimer = 10
-    if love.math.random(1,1) == 1 then
+    if love.math.random(1,50) == 1 then
         PETER = true
         PETERFUCKINGGRIFFIN = true
     end
@@ -411,7 +414,7 @@ function GameNormal:draw()
 
     love.graphics.setColor(1,1,1)
     love.graphics.setFont(defaultFont)
-    GameNormal:debugDraw()
+    --GameNormal:debugDraw()
     love.graphics.draw(peterBonus, (peterBonusPos[1] or Inits.GameWidth/2), (peterBonusPos[2] or Inits.GameHeight/2), math.rad(peterBonusPos[3]), 0.7, 0.7, 15, peterBonus:getHeight()/2)
    -- love.graphics.draw(peterBonus, Inits.GameWidth/2, Inits.GameHeight/2)
 end

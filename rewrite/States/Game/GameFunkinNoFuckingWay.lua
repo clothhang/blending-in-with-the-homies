@@ -32,7 +32,7 @@ function GameFunkin:enter()
     judgeCounterXPos = {0,0,0,0,0,0}
 
     --set variables
-    MusicTime = -10000
+    MusicTime = -300
     speed = 1.4
     laneWidth = 75
     score = 0
