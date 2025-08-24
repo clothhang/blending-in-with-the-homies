@@ -6,4 +6,5 @@ return {
     GameTemp = require("States.Game.GameTemp"),
     Results = require("States.Menu.Results"),
     Title = require("States.Menu.Title"),
+    GameBlending = require("States.Game.GameBlending"),
 }

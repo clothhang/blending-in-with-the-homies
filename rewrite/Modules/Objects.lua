@@ -1,5 +1,4 @@
-return {
-    Game = {
-        Player = require("Objects.Game.Player")
-    }
-}
+claw = require("Objects.game.claw")
+homie = require("Objects.game.homie")
+blender = require("Objects.game.blender")
+lever = require("Objects.game.lever")

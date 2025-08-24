@@ -95,6 +95,7 @@ function love.load()
             FunkinDown = {"key:f", "key:down"},
             FunkinUp = {"key:j", "key:up"},
             FunkinRight = {"key:k", "key:right"},
+            
         }
     })
     Class = require("Libraries.Class")
